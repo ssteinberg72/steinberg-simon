@@ -1,0 +1,44 @@
+#game-area {
+/*	text-align: center;*/
+}
+
+.board {
+	border: 0.5em lightgrey solid;
+	clear: left;
+	width: 20em;
+	height: 20em;
+	margin: 2em;
+	display: inline-block;
+}
+.cell {
+	height: 10em;
+	width: 10em;
+	float: left;
+	cursor: pointer;
+}
+.top.left {
+	background-color: red;
+}
+
+.top.right {
+	background-color: blue;
+}
+
+.bottom.left {
+	background-color: green;
+	clear: left;
+}
+
+.bottom.right {
+	background-color: yellow;
+}
+
+.red { color: red; }
+.blue { color: blue; }
+.green { color: green }
+
+.yellow { color: yellow; }
+
+.cell:hover {
+	opacity: 0.5;
+}
