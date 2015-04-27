@@ -4,39 +4,75 @@
 	<meta charset="UTF-8">
 	<title>Simon Says - Classic game from the 80's</title>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script src="app.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div ng-controller="simonController as s">
-		<h1 ng-bind="s.title"></h1>
+	<div ng-controller="myController as m">
+		
+
+		<h1 ng-bind="m.title"></h1>
+
+
+		{{ m.gO.colorOptions.red }}
+		
 		<p>Instructions go here. Ready? Click button to start</p>
 
 
-		<button ng-click="s.beginGame()" ng-if="!s.isGameStarted">Begin Game</button>
+		<button ng-click="m.beginGame()" ng-if="!m.isGameStarted">Begin Game</button>
 
 		
-		<h2 ng-show="s.isGameStarted">Turn {{ s.turnNumber }}</h2>
+		<!--<h2 ng-show="m.isGameStarted">Turn {{ m.turnNumber }}</h2>-->
 
 
 		<section id="simon-instructions">
-			<p>Simon Instructions: <span ng-hide="s.didInstructionsDisplay" ng-class="color" ng-repeat="color in s.computerInstructionsArray track by $index">{{ color }} </span> </p>	
+			<p>Simon Instructions: <span ng-hide="m.didInstructionsDisplay" ng-class="color" ng-repeat="color in m.computerInstructionsArray track by $index">{{ color }} </span> </p>	
 		</section>
 
 		<section id="user-selections">
-			<p>User's Selections: <span ng-class="color" ng-repeat="color in s.playerSequenceArray track by $index">{{ color }} </span></p>
+			<p>User's Selections: <span ng-class="color" ng-repeat="color in m.playerSequenceArray track by $index">{{ color }} </span></p>
 		</section>
 
 		<div class="board">
 
-			<div class="cell top left red" ng-click="s.pickColor('red')"></div>
-			<div class="cell top right blue" ng-click="s.pickColor('blue')"></div>
-			<div class="cell bottom left green" ng-click="s.pickColor('green')"></div>
-			<div class="cell bottom right yellow" ng-click="s.pickColor('yellow')"></div>
+			<div class="cell top left red" ng-click="m.pickColor('red')"></div>
+			<div class="cell top right blue" ng-click="m.pickColor('blue')"></div>
+			<div class="cell bottom left green" ng-click="m.pickColor('green')"></div>
+			<div class="cell bottom right yellow" ng-click="m.pickColor('yellow')"></div>
+		</div>
+
+		<div ng-show="m.gO.simonsTurn" class="simonsTurn abso center">
+			
+			<h2>Simon's Turn</h2>
+
+		</div>
+
+
+		<div ng-show="m.gO.yourTurn" class="yourTurn abso center">
+			
+			<h2>Your Turn</h2>
+			<p>{{m.len}} turn<span ng-hide="m.hideS">s</span> left
+			</p>
+
+				<!-- Disable div -->
+		<div style="height: 100%; width:100%; position: absolute; top:0; left: 0;" ng-show="ctrl.isDisabled"></div>
+
+	</div> <!-- Close Wrap -->
+
+	<div class="left" ng-repeat="display in m.gO.displayMoves">
+		
+		<h3>Move {{$index + 1}}</h3>
+		Simon: {{display.simon}}<br />
+		You: {{display.you}}
+
+	</div>
+
+
 		</div>
 		
 
 	</article>
 </body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="app.js"></script>
 </html>
